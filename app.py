@@ -40,8 +40,8 @@ def reply():
             users.update_one(
                 {"number": number}, {"$set": {"status": "ordering" ""}})
             res.message(
-                "You can select one of the following food to order: \n\n1️⃣ Veg Biryani  \n2️⃣ Chicken Biryani \n3️⃣ Chicken Spec.Biryani"
-                "\n4️⃣ Mutton Biryani \n5️⃣ Chicken Wings \n6️⃣ Paneer Biryani \n7️⃣ Chicken Curry \n8️⃣ Mutton Curry \n9️⃣ Leg pieces  \n0️⃣ Go Back")
+                "You can select one of the following food to order: \n\n1️⃣ Veg Biryani (100/-)   \n2️⃣ Chicken Biryani (200/-) \n3️⃣ Chicken Spec.Biryani (220/-)"
+                "\n4️⃣ Mutton Biryani (300/-) \n5️⃣ Chicken Wings (200/-) \n6️⃣ Paneer Biryani (200/-) \n7️⃣ Chicken Curry (150/-) \n8️⃣ Mutton Curry (200/-) \n9️⃣ Leg pieces (150/-)  \n0️⃣ Go Back")
         elif option == 3:
             res.message("We work from 9 a.m. to 5 p.m.")
 
@@ -62,8 +62,8 @@ def reply():
                         "\n\nType\n\n 1️⃣ To contact us \n 2️⃣ To order food \n 3️⃣ To know our working hours \n 4️⃣ "
                         "To get our address")
         elif 1 <= option <= 9:
-            cakes = ["Veg Biryani", "Chicken Biryani", "Chicken Spec.Biryani",
-                     "Mutton Biryani", "Chicken Wings", "Paneer Biryani", "Chicken Curry", "Mutton Curry", "Leg piece"]
+            cakes = ["Veg Biryani (100/-)", "Chicken Biryani (200/-)", "Chicken Spec.Biryani (220/-)",
+                     "Mutton Biryani (300/-)", "Chicken Wings (200/-)", "Paneer Biryani (200/-)", "Chicken Curry (150/-)", "Mutton Curry (250/-)", "Leg piece (150/-)"]
             selected = cakes[option - 1]
             users.update_one({"number": number}, {"$set": {"status": "address"}})
             users.update_one({"number": number}, {"$set": {"item": selected}})
