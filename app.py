@@ -67,7 +67,13 @@ def reply():
             users.update_one({"number": number}, {"$set": {"status": "address"}})
             users.update_one({"number": number}, {"$set": {"item": selected}})
             res.message("Excellent choice 😉")
-            res.message("Please enter your address to confirm the order") 
+            res.message("Please enter your address to confirm the order")
+            res.message("1️⃣Online payment \n 2️⃣Offline payment")
+            if option == 2:
+                pass
+            else:
+                res.message("UPI ID:9392741313")
+                pass
         else:
             res.message("Please enter a valid response")
     elif user["status"] == "address":
