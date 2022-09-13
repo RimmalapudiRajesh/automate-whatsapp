@@ -64,16 +64,23 @@ def reply():
             cakes = ["Veg Biryani", "Chicken Biryani", "Chicken Spec.Biryani",
                      "Mutton Biryani", "Chicken Wings", "Paneer Biryani", "Chicken Curry", "Mutton Curry", "Leg piece"]
             selected = cakes[option - 1]
-            users.update_one({"number": number}, {"$set": {"status": "address"}})
+            users.update_one({"number": number}, {"$set": {"status": "odering"}})
             users.update_one({"number": number}, {"$set": {"item": selected}})
             res.message("Excellent choice 😉")
             res.message("Please enter your address to confirm the order")
-            res.message("1️⃣Online payment \n 2️⃣Offline payment")
-            if option == 2:
-                pass
             else:
-                res.message("UPI ID:9392741313")
-                pass
+                res.message("Please enter a valid response")
+    elif user["status"] == "ordering":
+        
+        users.update_one({"number": number}, {"$set": {"status": "address"}})
+        
+        res.message("1️⃣Online payment \n 2️⃣Offline payment")
+        if option == 2:
+            
+            res.message("We will delivery to your door steps")
+        else:
+            res.message("UPI ID:9392741313")
+                
         else:
             res.message("Please enter a valid response")
     elif user["status"] == "address":
