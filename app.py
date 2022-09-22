@@ -34,7 +34,7 @@ def reply():
 
         if option == 1:
             res.message(
-                "You can contact us through phone or e-mail.\n\nPhone: 9392741313 \n E-mail :rajesh12345@gmail.com")
+                "You can contact us through phone or e-mail.\n\nPhone: ********* \n E-mail :***####@gmail.com")
         elif option == 2:
             res.message("You have entered ordering mode.")
             users.update_one(
@@ -46,7 +46,7 @@ def reply():
             res.message("We work from 9 a.m. to 5 p.m.")
 
         elif option == 4:
-            res.message("We have multiple stores across the city. Our main center is at 1/147, guntur")
+            res.message("Here we mention the Restaurant Address")
         else:
             res.message("Please enter a valid response")
     elif user["status"] == "ordering":
@@ -62,9 +62,9 @@ def reply():
                         "\n\nType\n\n 1️⃣ To contact us \n 2️⃣ To order food \n 3️⃣ To know our working hours \n 4️⃣ "
                         "To get our address")
         elif 1 <= option <= 9:
-            cakes = ["Veg Biryani (100/-)", "Chicken Biryani (200/-)", "Chicken Spec.Biryani (220/-)",
+            food = ["Veg Biryani (100/-)", "Chicken Biryani (200/-)", "Chicken Spec.Biryani (220/-)",
                      "Mutton Biryani (300/-)", "Chicken Wings (200/-)", "Paneer Biryani (200/-)", "Chicken Curry (150/-)", "Mutton Curry (250/-)", "Leg piece (150/-)"]
-            selected = cakes[option - 1]
+            selected = food[option - 1]
             users.update_one({"number": number}, {"$set": {"status": "address"}})
             users.update_one({"number": number}, {"$set": {"item": selected}})
             res.message("Excellent choice 😉")
