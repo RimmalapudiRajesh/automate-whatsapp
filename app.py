@@ -6,7 +6,7 @@ from datetime import datetime
 cluster = MongoClient(
     "mongodb+srv://raghu:raghu@cluster0.guea2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 
-db = cluster["bakery"]
+db = cluster["Restaurant"]
 users = db["users"]
 orders = db["orders"]
 
