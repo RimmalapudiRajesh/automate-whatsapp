@@ -13,6 +13,7 @@ app = Flask(__name__)
 @app.route("/", methods=["get", "post"])
 def reply():
     bill = 0
+   
     text = request.form.get("Body")
     number = request.form.get("From")
     number = number.replace("whatsapp:", "")
@@ -84,16 +85,18 @@ def reply():
     elif user["status"]=="payment":
         if text == "2":
             mode = "offline payment"
-            orders.insert_one({"number":number,"item"= x, "bill":bill,"mode":mode,"address":text,"order_time":datatime.now()})
+            
             res.message("Thanks for shopping with us 😊")
             res.message("Your order is delivered within the few hours")
+            orders.insert_one({"number":number,"item"= x, "bill":bill,"mode":mode,"address":text,"order_time":datatime.now()})
         elif text == "1":
             mode="online payment"
-            orders.insert_one({"number":number,"item":x,"bill":bill,"mode":mode,"address":text,"order_time":datatime.now()})
+           
             res.message("******* Payment-Link ******")
             res.message("Please send a payment for this above link")
             res.message("Thanks for shopping with us 😊")
             res.message("After your online payment your order is delivered within the few hours")
+            orders.insert_one({"number":number,"item":x,"bill":bill,"mode":mode,"address":text,"order_time":datatime.now()})
         else:
             res.message("Please enter a valid response")
         users.update_one({"number": number}, {"$set": {"status": "ordered"}})
