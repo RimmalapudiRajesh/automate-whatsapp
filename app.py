@@ -1,4 +1,3 @@
-
 from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 from pymongo import MongoClient
@@ -13,7 +12,6 @@ app = Flask(__name__)
 @app.route("/", methods=["get", "post"])
 def reply():
     bill = 0
-   
     text = request.form.get("Body")
     number = request.form.get("From")
     number = number.replace("whatsapp:", "")
@@ -79,23 +77,20 @@ def reply():
         x = user["item"]
         bill=user["bill"]
         res.message(f"Your order for \n{x}Total bill amount is {bill}\n")
-        orders.insert_one({"number":number,"item"= x, "bill":bill,"address":text,"order_time":datatime.now()})
+        orders.insert_one({"number": number, "item": x, "bill": bill , "address": text, "order_time": datetime.now()})
         users.update_one({"number":number},{"$set":{"status":"payment"}})
         res.message("Select the payment mode\n1️⃣Online Payment\n2️⃣Offline Payment\n")
     elif user["status"]=="payment":
         if text == "2":
-       
+           
             res.message("Thanks for shopping with us 😊")
             res.message("Your order is delivered within the few hours")
-            orders.insert_one({"number":number,"item"= x, "bill":bill,"mode":mode,"address":text,"order_time":datatime.now()})
         elif text == "1":
             
-           
             res.message("******* Payment-Link ******")
             res.message("Please send a payment for this above link")
             res.message("Thanks for shopping with us 😊")
             res.message("After your online payment your order is delivered within the few hours")
-           
         else:
             res.message("Please enter a valid response")
         users.update_one({"number": number}, {"$set": {"status": "ordered"}})
