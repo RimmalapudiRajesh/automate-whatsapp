@@ -83,11 +83,11 @@ def reply():
         res.message("Select the payment mode\n1️⃣Online Payment\n2️⃣Offline Payment\n")
     elif user["status"]=="payment":
         if text == "2":
-            orders.insert_one({"mode":"offline payment"})
+            orders.insert_one({"number":number,"item":x,"bill":bill,"mode":"offline payment","address":text,"order_time":datatime.now()})
             res.message("Thanks for shopping with us 😊")
             res.message("Your order is delivered within the few hours")
         elif text == "1":
-            orders.insert_one({"mode":"online payment"})
+            orders.insert_one({"number":number,"item":x,"bill":bill,"mode":"online payment","address":text,"order_time":datatime.now()})
             res.message("******* Payment-Link ******")
             res.message("Please send a payment for this above link")
             res.message("Thanks for shopping with us 😊")
