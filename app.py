@@ -34,8 +34,10 @@ def reply():
         elif option == 2:
             res.message("You have entered ordering mode.")
             users.update_one({"number": number}, {"$set": {"status": "ordering" ""}})
-            res.message("You can select one of the following food to order: \n\n1️⃣ Veg Biryani (100/-)   \n2️⃣ Chicken Biryani (200/-) \n3️⃣ Chicken Spec.Biryani (220/-)"
-                "\n4️⃣ Mutton Biryani (300/-) \n5️⃣ Chicken Wings (200/-) \n6️⃣ Paneer Biryani (200/-) \n7️⃣ Chicken Curry (150/-) \n8️⃣ Mutton Curry (200/-) \n9️⃣ Leg pieces (150/-)  \n0️⃣ Go Back")
+            res.message("You can select one of the following food to order: \n\n1️⃣ Veg Biryani (100/-)  
+            "\n2️⃣ Chicken Biryani (200/-) \n3️⃣ Chicken Spec.Biryani (220/-)"
+            "\n4️⃣ Mutton Biryani (300/-) \n5️⃣ Chicken Wings (200/-) \n6️⃣ Paneer Biryani (200/-) 
+             "\n7️⃣ Chicken Curry (150/-) \n8️⃣ Mutton Curry (200/-) \n9️⃣ Leg pieces (150/-)  \n0️⃣ Go Back")
         elif option == 3:
             res.message("We work from 9 a.m. to 5 p.m.")
 
